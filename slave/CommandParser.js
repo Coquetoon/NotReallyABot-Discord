@@ -1,4 +1,4 @@
-const Answer = require('./Answer.js')
+const Question = require('./Question.js')
 
 const splitRegEx = /(\w+)( (?!$)([\s\S]*))?/;
 
@@ -27,8 +27,8 @@ class CommandParser {
         }
     }
 
-    question(msg) {
-        return new Answer(msg, this.split(msg.content));
+    expressQuestion(msg) {
+        return new Question(msg, this.split(msg.content));
     }
 
     split(content) {

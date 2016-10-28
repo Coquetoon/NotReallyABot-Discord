@@ -1,7 +1,7 @@
 const ColourFilter = require('../plugins/colorize/ColourFilter.js');
 const Config = require('../config.js')
 
-function MyColours(message, answer, client) {
+function MyColours(message, question, client) {
     if (message.guild === undefined) return;
 
     filter = ColourFilter.filter(message.member.roles);

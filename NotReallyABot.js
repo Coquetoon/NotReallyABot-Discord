@@ -31,13 +31,9 @@ Bottie.on('message', (msg) => {
     if (Config.ignoringMyself && msg.author === msg.client.user) return;
     if (!Bottie.Parser.eligible(msg.content)) return;
 
-    let answer = Bottie.Parser.question(msg);
+    let question = Bottie.Parser.expressQuestion(msg);
 
-    if (answer.cmdLower == 'mycolours') {
-        BotCommands.MyColours.handle(msg, answer, msg.client)
-    }
-
-    // Bottie.CommandManager.callCommand(Bottie.Parser.question(msg));
+    Bottie.CommandManager.analyzeQuestion(question);
 });
 
 
