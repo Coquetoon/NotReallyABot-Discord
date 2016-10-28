@@ -3,6 +3,7 @@ class Answer {
         this.msg = msg;
         this.prefix = obj.prefix;
         this.cmd = obj.cmd;
+        this.cmdLower = this.cmd.toLowerCase();
         this.args = obj.args;
         this.argsList = [];
 
