@@ -12,7 +12,7 @@ module.exports = {
                                             '     ',
                                             message.client.config.maxRolesPerLine || 5);
 
-        message.reply(content).then(m => m.delete(((filter.size*2) + 20) * 1000));
+        message.reply(content).then(m => m.delete(((filter.size*4) + 20) * 1000));
     },
     cmd: 'colours',
     aliases: ['colors'],
