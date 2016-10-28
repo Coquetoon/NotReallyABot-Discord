@@ -6,8 +6,10 @@ class Answer {
         this.args = obj.args;
         this.argsList = [];
 
-        if (typeof answer.args == 'string') {
-            answer.argsList = answer.args.replace(/[ ]+$/, '').split(/[ ]+/g);
+        if (typeof this.args == 'string') {
+            this.argsList = this.args.replace(/[ ]+$/, '').split(/[ ]+/g);
         }
     }
 }
+
+module.exports = Answer;

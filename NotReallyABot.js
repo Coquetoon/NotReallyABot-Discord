@@ -3,6 +3,8 @@ const Config = require ('./config.js');
 const CommandParser = require('./command/CommandParser.js')
 // Commands
 const BotCommands = require('./BotCommands.js');
+// Colour
+const ColourFilter = require('./plugins/colorize/ColourFilter.js');
 // Token
 const __token = require('./.token.json')['token'];
 

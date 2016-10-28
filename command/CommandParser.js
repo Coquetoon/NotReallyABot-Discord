@@ -28,7 +28,7 @@ class CommandParser {
     }
 
     question(msg) {
-        return new Answer(msg, self.split(msg.content));
+        return new Answer(msg, this.split(msg.content));
     }
 
     split(content) {
