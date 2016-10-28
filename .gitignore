@@ -1,3 +1,7 @@
+# Custom
+.token.json
+config.js
+
 # Logs
 logs
 *.log
