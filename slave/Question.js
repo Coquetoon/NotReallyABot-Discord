@@ -1,4 +1,4 @@
-class Answer {
+class Question {
     constructor(msg, obj) {
         this.msg = msg;
         this.prefix = obj.prefix;
@@ -13,4 +13,4 @@ class Answer {
     }
 }
 
-module.exports = Answer;
+module.exports = Question;
