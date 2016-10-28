@@ -3,7 +3,10 @@ class Question {
         this.msg = msg;
         this.prefix = obj.prefix;
         this.cmd = obj.cmd;
-        this.cmdLower = this.cmd.toLowerCase();
+        if (typeof this.cmd === 'string')
+            this.cmdLower = this.cmd.toLowerCase();
+        else
+            this.cmdLower = null;
         this.args = obj.args;
         this.argsList = [];
 
