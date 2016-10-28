@@ -16,6 +16,8 @@ const Parser = new CommandParser(Config.prefix, ' ');
 Bottie.on('ready', function () {
     console.log(Config.readyConsole);
 
+    this.user.setGame(Config.game);
+
     for (index in Config.ready) {
         ready = Config.ready[index];
         channel = this.channels.get(ready.id);
