@@ -1,3 +1,4 @@
+const Answer = require('./Answer.js')
 
 const splitRegEx = /(\w+)( (?!$)([\s\S]*))?/;
 
@@ -26,21 +27,19 @@ class CommandParser {
         }
     }
 
+    question(msg) {
+        return new Answer(msg, self.split(msg.content));
+    }
+
     split(content) {
         let slice = content.slice(this.prefix.length);
         let match = splitRegEx.exec(slice.replace(/^[ ]+/, ''));
 
-        let answer = {}
-
-        answer.prefix = this.prefix;
-        answer.command = match[1];
-        answer.args = match[3];
-        answer.argsList = [];
-        if (typeof answer.args == 'string') {
-            answer.argsList = answer.args.replace(/[ ]+$/, '').split(/[ ]+/g);
+        return {
+            'prefix': this.prefix,
+            'cmd': match[1],
+            'args': match[3],
         }
-
-        return answer;
     }
 
     get prefix() {
