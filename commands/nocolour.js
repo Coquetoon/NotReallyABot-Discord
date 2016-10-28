@@ -9,7 +9,7 @@ function NoColour(message, question, client) {
         message.member.removeRoles(filter)
             .then(gm => message.reply("I have removed your colour roles: "
                                       + ColourFilter.mentionAll(filter, ' ')))
-            .catch(e => message.reply(`I can't do that, reason: ${e}`))
+            .catch(e => message.reply(`I couldn't give you that colour! Maybe I don't have permissions to manage your roles.\n${e}`));
     } else {
         message.reply("You don't have a colour yet.")
     }

@@ -18,10 +18,29 @@ function Colour(message, question, client) {
     role = filter.find(role => normalize(role.name) == requestedColourName);
     
     if (role == undefined) {
-        message.reply('The colour `' + question.args + '` does not exist.')
+        message.reply('The colour `' + question.args + '` does not exist.');
         return;
     }
-    
+
+    if (message.member.roles.exists('id', role.id)) {
+        message.reply(`You already have the colour ${role}`);
+        return;
+    }
+
+    let memberColours = ColourFilter.filter(message.member.roles);
+
+    message.member.addRole(role)
+        .then(gm => {
+            message.reply(`Enjoy your new colour ${role}!`);
+
+            if (memberColours.size > 0) {
+                rmColour = () => gm.removeRoles(memberColours)
+                    .catch(e => console.log(`I couldn't remove your old colour. Reason: ${e}`));
+                setTimeout(rmColour, 500);
+            }
+
+        })
+        .catch(e => message.reply(`I couldn't give you that colour! Maybe I don't have permissions to manage that role.\n${e}`));
 }
 
 module.exports = {
