@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const Config = require ('./config.js');
 // Commands
 const BotCommands = require('./bot/BotCommands.js');
 const CommandParser = require('./slave/CommandParser.js')
@@ -9,16 +8,17 @@ const __token = require('./.token.json')['token'];
 
 // Bottie client
 const Bottie = new Discord.Client();
-Bottie.Parser = new CommandParser(Config.prefix, ' ');
-Bottie.CommandManager = new CommandManager(Bottie, BotCommands);
+Bottie.config = require('./config.js');
+Bottie.parser = new CommandParser(Bottie.config.prefix, ' ');
+Bottie.commandManager = new CommandManager(Bottie, BotCommands);
 
 Bottie.on('ready', function () {
-    console.log(Config.readyConsole);
+    console.log(this.config.readyConsole);
 
-    this.user.setGame(Config.game);
+    this.user.setGame(this.config.game);
 
-    for (index in Config.ready) {
-        ready = Config.ready[index];
+    for (index in this.config.ready) {
+        ready = this.config.ready[index];
         channel = this.channels.get(ready.id);
 
         if (channel && channel.permissionsFor(this.user).hasPermission('SEND_MESSAGES')) {
@@ -28,12 +28,13 @@ Bottie.on('ready', function () {
 });
 
 Bottie.on('message', (msg) => {
-    if (Config.ignoringMyself && msg.author === msg.client.user) return;
-    if (!Bottie.Parser.eligible(msg.content)) return;
+    const client = msg.client;
+    if (client.config.ignoringMyself && msg.author === client.user) return;
+    if (!Bottie.parser.eligible(msg.content)) return;
 
-    let question = Bottie.Parser.expressQuestion(msg);
+    let question = Bottie.parser.expressQuestion(msg);
 
-    Bottie.CommandManager.answerQuestion(msg, question);
+    Bottie.commandManager.answerQuestion(msg, question);
 });
 
 
