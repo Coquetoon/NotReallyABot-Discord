@@ -9,6 +9,8 @@ Config.game = undefined;
 // Messages displayes by the bot upon ready.
 // Message showed on console.
 Config.readyConsole = 'Ready.';
+// Commands stuff
+Config.maxRolesPerLine = 5;
 // Message showed on a chat room.
 Config.ready = [
     {

@@ -1,10 +1,27 @@
+const Config = require('../../config.js')
+
 const ColourFilter = {}
 
 function splitLines(arr, separator, maxPerLine) {
-    if (arr) {
-        return rolesArr.splice(0, maxPerLine).join(separator).concat(splitLines());
+    if (arr.length > 0) {
+        console.log(arr);
+        return Array(arr.splice(0, maxPerLine).join(separator))
+               .concat(splitLines(arr, separator, maxPerLine));
     }
     return arr;
+}
+
+function containsPrefix(role) {
+    for (index in Config.colourPrefixes) {
+        if (role.name.startsWith(Config.colourPrefixes[index])) {
+            return true;
+        }
+    }
+    return false;
+}
+
+ColourFilter.filter = function(roles) {
+    return roles.filter(r => containsPrefix(r) && r.color !== 0);
 }
 
 ColourFilter.mentionAll = function (roles, separator='', maxPerLine=-1) {
@@ -16,7 +33,7 @@ ColourFilter.mentionAll = function (roles, separator='', maxPerLine=-1) {
         if (maxPerLine < 0)
             return rolesArr.join(separator)
         else
-            return splitLines(rolesArr, separator, maxPerLine).join('\n');
+            return splitLines(rolesArr, separator, maxPerLine).join('\n\n');
 }
 
 module.exports = ColourFilter;
