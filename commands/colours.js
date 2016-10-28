@@ -6,9 +6,11 @@ function Colours(message, answer, client) {
 
     filter = ColourFilter.filter(message.guild.roles);
 
-    message.reply(`Available colours. Total: ${filter.size}`
-                     + '\nUse **bottie colour *ColourName*** to select a colour.\n\n'
-                     + ColourFilter.mentionAll(filter, '     ', Config.maxRolesPerLine || 5));
+    content = `Available colours. Total: ${filter.size}`
+              + '\nUse **bottie colour *ColourName*** to select a colour.\n\n'
+              + ColourFilter.mentionAll(filter, '     ', Config.maxRolesPerLine || 5);
+
+    message.reply(content).delete((filter.size*1.5) + 15);
 }
 
 module.exports = {

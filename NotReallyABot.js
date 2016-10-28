@@ -1,9 +1,9 @@
 const Discord = require('discord.js');
 const Config = require ('./config.js');
-const CommandParser = require('./slave/CommandParser.js')
 // Commands
 const BotCommands = require('./bot/BotCommands.js');
-const CommandManager = require('./command/CommandManager.js')
+const CommandParser = require('./slave/CommandParser.js')
+const CommandManager = require('./slave/CommandManager.js')
 // Token
 const __token = require('./.token.json')['token'];
 
@@ -29,11 +29,15 @@ Bottie.on('ready', function () {
 
 Bottie.on('message', (msg) => {
     if (Config.ignoringMyself && msg.author === msg.client.user) return;
-    if (!Parser.eligible(msg.content)) return;
+    if (!Bottie.Parser.eligible(msg.content)) return;
 
-    let answer = Parser.question(msg);
+    let answer = Bottie.Parser.question(msg);
 
-    // Bottie.CommandManager.callCommand(Parser.question(msg));
+    if (answer.cmdLower == 'mycolours') {
+        BotCommands.MyColours.handle(msg, answer, msg.client)
+    }
+
+    // Bottie.CommandManager.callCommand(Bottie.Parser.question(msg));
 });
 
 
