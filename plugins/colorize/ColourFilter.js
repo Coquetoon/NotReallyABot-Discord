@@ -4,7 +4,6 @@ const ColourFilter = {}
 
 function splitLines(arr, separator, maxPerLine) {
     if (arr.length > 0) {
-        console.log(arr);
         return Array(arr.splice(0, maxPerLine).join(separator))
                .concat(splitLines(arr, separator, maxPerLine));
     }

@@ -2,7 +2,6 @@ const Collection = require('discord.js').Collection;
 
 class CommandManager {
     constructor(client, commands={}, noCommand=null, unknownCommand=null) {
-        console.log(commands);
         this.client = client;
         this.commands = new Collection();
         this.aliases = new Collection();
@@ -17,7 +16,7 @@ class CommandManager {
 
     _insertCommandAliases(command) {
         for (let alias in command.aliases) {
-            this._insertCommandAlias(alias, command);
+            this._insertCommandAlias(command.aliases[alias], command);
         }
     }
 
