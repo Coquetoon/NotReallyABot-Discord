@@ -8,14 +8,14 @@ function MyColours(message, question, client) {
 
     if (filter.size > 0) {
         message.reply(`Your colour roles: ${ColourFilter.mentionAll(filter, ' ')}`)
-               .then(m => m.delete(20 + filter.size));
+               .then(m => m.delete((20 + filter.size) * 1000));
     } else {
-        message.reply("You don't have any colour role yet.").then(m => m.delete(10));
+        message.reply("You don't have any colour role yet.").then(m => m.delete(10 * 1000));
     }
 }
 
 module.exports = {
     handle: MyColours,
-    cmd: 'mycolours',
-    aliases: ['mycolors'],
+    cmd: 'mycolour',
+    aliases: ['mycolors', 'mycolor', 'mycolors'],
 }

@@ -10,7 +10,7 @@ function Colours(message, question, client) {
               + '\nUse **bottie colour *ColourName*** to select a colour.\n\n'
               + ColourFilter.mentionAll(filter, '     ', Config.maxRolesPerLine || 5);
 
-    message.reply(content).delete((filter.size*1.5) + 20);
+    message.reply(content).then(m => m.delete(((filter.size*1.5) + 20) * 1000));
 }
 
 module.exports = {

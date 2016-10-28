@@ -10,7 +10,7 @@ const __token = require('./.token.json')['token'];
 // Bottie client
 const Bottie = new Discord.Client();
 Bottie.Parser = new CommandParser(Config.prefix, ' ');
-// Bottie.CommandManager = new CommandManager(BotCommands);
+Bottie.CommandManager = new CommandManager(Bottie, BotCommands);
 
 Bottie.on('ready', function () {
     console.log(Config.readyConsole);
@@ -33,7 +33,7 @@ Bottie.on('message', (msg) => {
 
     let question = Bottie.Parser.expressQuestion(msg);
 
-    Bottie.CommandManager.analyzeQuestion(question);
+    Bottie.CommandManager.answerQuestion(msg, question);
 });
 
 
