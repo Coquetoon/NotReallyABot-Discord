@@ -4,11 +4,15 @@ class Question {
         this.prefix = obj.prefix;
         this.cmd = obj.cmd;
         this.args = obj.args;
-        this.argsList = [];
+    }
 
-        if (typeof this.args == 'string') {
-            this.argsList = this.args.replace(/[ ]+$/, '').split(/[ ]+/g);
+    get argsList() {
+        if (this._argsList === undefined) {
+            if (typeof this.args == 'string') {
+                this._argsList = this.args.replace(/[ ]+$/, '').split(/[ ]+/g);
+            }
         }
+        return this._argsList;
     }
 
     get cmdLower() {
