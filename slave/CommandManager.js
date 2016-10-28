@@ -40,7 +40,8 @@ class CommandManager {
             return null;
         }
 
-        let command = this.commands.get(question.cmdLower);
+        let command = this.commands.get(question.cmdLower)
+                      || this.aliases.get(question.cmdLower);
 
         if (command === undefined) {
             if (typeof this.unknownCommand === 'function') {
