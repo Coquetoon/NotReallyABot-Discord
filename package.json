@@ -1,0 +1,15 @@
+{
+  "name": "NotReallyABot",
+  "version": "0.2",
+  "description": "",
+  "main": "NotReallyABot.js",
+  "author": "Isabele Ketchup <@KetchupGirl>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KetchupGirl/NotReallyABot.git"
+  },
+  "dependencies": {
+    "discord.js": "10.0.1"
+  }
+}
