@@ -1,4 +1,4 @@
-function Colours() {
+function Colours(answer) {
 
 }
 

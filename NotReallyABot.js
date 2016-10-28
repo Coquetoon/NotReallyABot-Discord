@@ -28,7 +28,7 @@ Bottie.on('message', (msg) => {
     if (Config.ignoringMyself && msg.author === msg.client.user) return;
     if (!Parser.eligible(msg.content)) return;
 
-    
+    let msgCmd = Parser.question(msg);
 });
 
 
