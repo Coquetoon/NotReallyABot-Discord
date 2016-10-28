@@ -1,5 +1,3 @@
-const Config = require('../../config.js')
-
 const ColourFilter = {}
 
 function splitLines(arr, separator, maxPerLine) {
@@ -11,8 +9,10 @@ function splitLines(arr, separator, maxPerLine) {
 }
 
 function containsPrefix(role) {
-    for (index in Config.colourPrefixes) {
-        if (role.name.startsWith(Config.colourPrefixes[index])) {
+    const client = role.client;
+
+    for (index in client.config.colourPrefixes) {
+        if (role.name.startsWith(client.config.colourPrefixes[index])) {
             return true;
         }
     }
