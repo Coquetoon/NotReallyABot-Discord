@@ -1,7 +1,7 @@
 module.exports = {
-    handle: (message, question) => {
-        const client = message.client;
-        if (client.config.masters.includes(message.author.id)) {
+    handle: (msg, question) => {
+        const client = msg.client;
+        if (client.config.masters.includes(msg.author.id)) {
             var args = question.args;
             // client.log('EVAL WAS RUN!');
             try {
@@ -10,9 +10,9 @@ module.exports = {
                     res = require('util').inspect(res);
                 }
             } catch (err) {
-                res = err.message;
+                res = err.msg;
             }
-            message.channel.sendMessage('```js\n' + res + '\n```');
+            msg.channel.sendMessage('```js\n' + res + '\n```');
         }
     },
     cmd: 'eval',
