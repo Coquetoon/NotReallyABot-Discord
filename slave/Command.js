@@ -3,13 +3,16 @@ class Command {
     constructor(command) {
         this.handle = command.handle;
         this._cmd = command.cmd;
-
         this._aliases = [];
         this.addAliases(command.aliases);
     }
 
     get cmd() {
         return this._cmd;
+    }
+
+    get cmdLower() {
+        return this.cmd.toLowerCase();
     }
 
     get aliases() {
