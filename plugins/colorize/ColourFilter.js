@@ -19,15 +19,26 @@ function containsPrefix(role) {
     return false;
 }
 
+function sortRoles(a, b) {
+    return b[0] - a[0];
+}
+
 ColourFilter.filter = function(roles) {
     return roles.filter(r => containsPrefix(r) && r.color !== 0);
 }
 
-ColourFilter.mentionAll = function (roles, separator='', maxPerLine=-1) {
+ColourFilter.mentionAll = function (roles, sorted=False, separator='', maxPerLine=-1) {
         if (typeof separator !== 'string') throw new ValueError("The separator must be a string");
         if (maxPerLine === 0) throw new ValueError("maxPerLine can't be 0");
 
-        rolesArr = roles.map(r => r.toString());
+        let rolesArr;
+
+        if (sorted) {
+            unsortedRolesArr = roles.map(r => [r.position, r.toString()]);
+            rolesArr = unsortedRolesArr.sort(sortRoles).map(r => r[1]);
+        } else {
+            rolesArr = roles.map(r => r.toString());
+        }
 
         if (maxPerLine < 0)
             return rolesArr.join(separator)

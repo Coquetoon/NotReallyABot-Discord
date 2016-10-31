@@ -9,6 +9,7 @@ module.exports = {
         content = `Available colours. Total: ${filter.size}`
                   + '\nUse **bottie colour *ColourName*** to select a colour.\n\n'
                   + ColourFilter.mentionAll(filter,
+                                            true,
                                             '     ',
                                             message.client.config.maxRolesPerLine || 5);
 
