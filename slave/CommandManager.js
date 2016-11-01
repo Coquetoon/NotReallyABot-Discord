@@ -1,4 +1,5 @@
 const Collection = require('discord.js').Collection;
+const version = require('../package.json').version;
 
 class CommandManager {
     constructor(client, commands={}, noCommand=null, unknownCommand=null) {
