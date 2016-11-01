@@ -30,7 +30,7 @@ Bottie.on('ready', function () {
 Bottie.on('message', (msg) => {
     const client = msg.client;
     if (client.config.ignoringMyself && msg.author === client.user) return;
-    if (!Bottie.parser.eligible(msg.content)) return;
+    if (!Bottie.parser.hasPrefix(msg.content)) return;
 
     let question = Bottie.parser.expressQuestion(msg);
 

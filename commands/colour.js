@@ -45,4 +45,5 @@ module.exports = {
     },
     cmd: 'colour',
     aliases: ['color'],
+    'args': ['ColourName'],
 }
