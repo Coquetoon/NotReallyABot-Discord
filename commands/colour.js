@@ -1,7 +1,9 @@
 const ColourFilter = require('../plugins/colorize/ColourFilter.js');
 
 function normalize(name) {
-    return name.replace(/_/g, '').toLowerCase().match(/\w+/g).join('');
+    const request = name.replace(/_/g, '').toLowerCase().match(/\w+/g);
+    if (request == null) return null;
+    return request.join('');
 }
 
 module.exports = {
