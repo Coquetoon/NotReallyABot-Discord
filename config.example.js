@@ -11,6 +11,7 @@ Config.game = undefined;
 Config.readyConsole = 'Ready.';
 // Commands stuff
 Config.maxRolesPerLine = 5;
+Config.colourPrefixes = ['#', '+'];
 // Message showed on a chat room.
 Config.ready = [
     {
