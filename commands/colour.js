@@ -25,7 +25,7 @@ module.exports = {
             return;
         }
 
-        if (message.member.roles.exists('id', role.id)) {
+        if (message.member.roles.has('id')) {
             message.reply(`You already have the colour ${role}`);
             return;
         }

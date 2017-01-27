@@ -1,7 +1,7 @@
 {
   "name": "NotReallyABot",
-  "version": "0.3",
-  "description": "",
+  "version": "0.3.1",
+  "description": "A role manager bot for Discord.",
   "main": "NotReallyABot.js",
   "author": "Isabele Ketchup <@KetchupGirl>",
   "license": "Apache-2.0",
@@ -10,6 +10,6 @@
     "url": "git+https://github.com/KetchupGirl/NotReallyABot.git"
   },
   "dependencies": {
-    "discord.js": "^10.0.1"
+    "discord.js": "~11.0.0"
   }
 }
