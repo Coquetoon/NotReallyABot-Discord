@@ -27,11 +27,16 @@ ColourFilter.filter = function(roles) {
     return roles.filter(r => containsPrefix(r) && r.color !== 0);
 }
 
-ColourFilter.mentionAll = function (roles, sorted=False, separator='', maxPerLine=-1) {
+ColourFilter.mentionAll = function (heading,
+                                    roles,
+                                    sorted=False,
+                                    separator='',
+                                    maxPerLine=-1) {
         if (typeof separator !== 'string') throw new ValueError("The separator must be a string");
         if (maxPerLine === 0) throw new ValueError("maxPerLine can't be 0");
 
         let rolesArr;
+        var separatedMessages = [];
 
         if (sorted) {
             unsortedRolesArr = roles.map(r => [r.position, r.toString()]);
@@ -39,11 +44,33 @@ ColourFilter.mentionAll = function (roles, sorted=False, separator='', maxPerLin
         } else {
             rolesArr = roles.map(r => r.toString());
         }
+        if (rolesArr.length === 0) {
+            separatedMessages.push(heading);
+            return separatedMessages;
+        }
 
-        if (maxPerLine < 0)
-            return rolesArr.join(separator)
-        else
-            return splitLines(rolesArr, separator, maxPerLine).join('\n\n');
+        var headingLength = heading.length;
+        const roleTagLength = rolesArr[0].length;
+        const rolesAmount = 60;
+        const loops = Math.ceil(rolesArr.length/rolesAmount);
+
+        for (var index = 0; index < loops; index++) {
+            let content;
+            let parts = rolesArr.splice(0, rolesAmount);
+
+            if (maxPerLine < 0)
+                content = parts.join(separator);
+            else
+                content = splitLines(parts, separator, maxPerLine).join('\n\n');
+
+            if (separatedMessages.length === 0) {
+                content = heading + content;
+            }
+
+            separatedMessages.push(content);
+        }
+
+        return separatedMessages;
 }
 
 module.exports = ColourFilter;
