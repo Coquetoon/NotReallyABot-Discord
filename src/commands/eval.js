@@ -3,7 +3,7 @@ const inspect = require('util').inspect;
 module.exports = {
   handler: (msg, answer) => {
     const client = msg.client;
-    if (client.config.masters.includes(msg.author.id)) {
+    if (client.config.bot.owners.includes(msg.author.id)) {
       const args = answer.rawArguments;
       let res;
 
