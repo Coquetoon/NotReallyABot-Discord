@@ -30,7 +30,7 @@ Bottie.on('message', function onMessage(msg) {
 
   this.commandManager.parser.makeAnswer(msg)
     .then((answer) => {
-      if (!answer.commandName && !answer.command) {
+      if (!answer.command) {
         msg.reply(`I don't know what \`${answer.commandName}\` means :(`);
         return;
       }
