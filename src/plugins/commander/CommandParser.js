@@ -1,4 +1,4 @@
-const Answer = require('./Answer.js')
+const Answer = require('./Answer.js');
 
 class CommandParser {
   constructor(manager) {
@@ -18,7 +18,7 @@ class CommandParser {
 
   generateAnswer(content) {
     const contentWithoutPrefix = content.slice(this.manager.prefix.name.length).trimLeft();
-    const match = /([^\s]+)?([ ]+(.*)?)?/.exec(content);
+    const match = /([^\s]+)?([ ]+(.*)?)?/.exec(contentWithoutPrefix);
     if (match) {
       return new Answer({
         manager: this.manager,
@@ -26,6 +26,8 @@ class CommandParser {
         rawArguments: match[3],
       });
     }
+
+    return null;
   }
 }
 

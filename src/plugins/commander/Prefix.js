@@ -12,17 +12,17 @@ class Prefix {
     const prefixMatch = /[^\s]+/.exec(content.slice(0, prefix.length));
     const contentPrefix = prefixMatch[0];
 
-    const contained = compare(contentPrefix);
+    const contained = this.compare(contentPrefix);
 
     return contained;
   }
 
   compare(content) {
     if (this.caseSensitive) {
-      return prefix.toLowerCase() === contentPrefix.toLowerCase();
+      return this.name.toLowerCase() === content.toLowerCase();
     }
 
-    return prefix === content;
+    return this.name === content;
   }
 }
 
