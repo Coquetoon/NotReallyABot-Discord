@@ -19,7 +19,7 @@ class Prefix {
   }
 
   compare(content) {
-    if (this.caseSensitive) {
+    if (!this.caseSensitive) {
       return this.name.toLowerCase() === content.toLowerCase();
     }
 
