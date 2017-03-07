@@ -34,7 +34,7 @@ module.exports = {
       sendMessages: [
         {
           channel: 'textChannel id',
-          message: 'Ready to be a bot',
+          content: 'Ready to be a bot',
         },
       ],
     },

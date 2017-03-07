@@ -23,7 +23,7 @@ class CommandManager {
   }
 
   pushCommand(command) {
-    const key = this.asMappingKey(command.cmd);
+    const key = CommandManager.asMappingKey(command.cmd);
     this.validateCommand(key, command);
     this.commands.set(key, command);
 
@@ -31,7 +31,7 @@ class CommandManager {
   }
 
   pushAlias(alias) {
-    const key = this.asMappingKey(alias.cmd);
+    const key = CommandManager.asMappingKey(alias.cmd);
     this.validateCommand(key, alias);
     this.aliases.set(key, alias);
 
@@ -39,17 +39,17 @@ class CommandManager {
   }
 
   hasCommand(cmd) {
-    const key = this.asMappingKey(cmd);
+    const key = CommandManager.asMappingKey(cmd);
     return this.commands.has(key) || this.aliases.commands.has(key);
   }
 
   getCommand(cmd) {
-    const key = this.asMappingKey(cmd);
+    const key = CommandManager.asMappingKey(cmd);
     return this.commands.get(key) || this.getAliasCommandByKey(key);
   }
 
   getAliasCommand(cmd) {
-    const key = this.asMappingKey(cmd);
+    const key = CommandManager.asMappingKey(cmd);
     return this.getAliasCommandByKey(key);
   }
 
@@ -61,13 +61,13 @@ class CommandManager {
   }
 
   deleteCommand(cmd) {
-    this.commands.delete(this.asMappingKey(cmd));
+    this.commands.delete(CommandManager.asMappingKey(cmd));
 
     return this;
   }
 
   deleteAlias(cmd) {
-    this.commands.delete(this.asMappingKey(cmd));
+    this.commands.delete(CommandManager.asMappingKey(cmd));
 
     return this;
   }

@@ -29,9 +29,7 @@ class Answer {
      * The command which pertains to the call.
      * @type {Command}
      */
-    this.command = this.commandName !== undefined
-      ? this.manager.getCommand(this.commandName)
-      : undefined;
+    this.command = this.manager.getCommand(this.commandName);
 
     /**
      * The whole command argument.
@@ -50,7 +48,7 @@ class Answer {
     return new Promise((resolve, reject) => {
       if (!this.command) reject(this);
 
-      const result = this.command.handler(this);
+      const result = this.command.handler(this.msg, this);
 
       return result;
     });

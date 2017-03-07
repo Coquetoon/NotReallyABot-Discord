@@ -5,7 +5,7 @@ class CommandParser {
     this.manager = manager;
   }
 
-  answerMessage(msg) {
+  makeAnswer(msg) {
     return new Promise((resolve, reject) => {
       if (!this.manager.prefix.containedIn(msg.content)) reject(msg);
 
@@ -18,7 +18,7 @@ class CommandParser {
 
   generateAnswer(msg) {
     const contentWithoutPrefix = msg.content.slice(this.manager.prefix.name.length).trimLeft();
-    const match = /([^\s]+)?([ ]+(.*)?)?/.exec(contentWithoutPrefix);
+    const match = contentWithoutPrefix.match(/([^\s]+)?([ ]+(.*|\n)?)?/);
     if (match) {
       const manager = this.manager;
       const commandName = match[1];
