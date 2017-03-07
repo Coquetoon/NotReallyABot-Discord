@@ -2,14 +2,23 @@
   "name": "NotReallyABot",
   "version": "0.3.1",
   "description": "A role manager bot for Discord.",
-  "main": "NotReallyABot.js",
+  "main": "src/index.js",
   "author": "Isabele Ketchup <@KetchupGirl>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JPChat/NotReallyABot.git"
   },
+  "scripts": {
+    "lint": "eslint src",
+    "test": "eslint src"
+  },
   "dependencies": {
     "discord.js": "~11.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-import": "^2.2.0"
   }
 }
