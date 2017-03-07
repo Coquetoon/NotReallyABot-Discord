@@ -1,10 +1,17 @@
 class Answer {
-  constructor({ manager, commandName, rawArguments } = {}) {
+  constructor({ msg, manager, commandName, rawArguments } = {}) {
+    this.client = manager.client;
     /**
      * The command manager that created the instance of the Answer.
      * @type {CommandManager}
      */
     this.manager = manager;
+
+    /**
+     * The sent message.
+     * @type {Prefix}
+     */
+    this.msg = msg;
 
     /**
      * The prefix of the command.
@@ -23,8 +30,8 @@ class Answer {
      * @type {Command}
      */
     this.command = this.commandName !== undefined
-        ? this.manager.getCommand(this.commandName)
-        : undefined;
+      ? this.manager.getCommand(this.commandName)
+      : undefined;
 
     /**
      * The whole command argument.
@@ -37,6 +44,16 @@ class Answer {
      * @type {Prefix}
      */
     this.arguments = this.rawArguments.split(/[^\S]+/g);
+  }
+
+  executeCommand() {
+    return new Promise((resolve, reject) => {
+      if (!this.command) reject(this);
+
+      const result = this.command.handler(this);
+
+      return result;
+    });
   }
 }
 

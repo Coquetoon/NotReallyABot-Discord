@@ -1,6 +1,7 @@
 class Command {
-  constructor(client, cmd) {
+  constructor(client, cmd, { handler } = {}) {
     this.client = client;
+    this.handler = handler;
     this.cmd = cmd;
     this.cmdLower = this.cmd.toLowerCase();
   }

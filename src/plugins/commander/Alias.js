@@ -4,8 +4,8 @@ const Command = require('./Command');
  * Represents an alias for a command.
  */
 class Alias extends Command {
-  constructor(cmd, aliasFor) {
-    super(cmd);
+  constructor(client, cmd, aliasFor) {
+    super(client, cmd);
 
     /**
      * The command to be aliased
@@ -15,4 +15,4 @@ class Alias extends Command {
   }
 }
 
-exports.default = Alias;
+module.exports = Alias;

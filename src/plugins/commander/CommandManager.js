@@ -1,15 +1,14 @@
 const Collection = require('discord.js').Collection;
 const CommandParser = require('./CommandParser');
-const Prefix = require('./Prefix');
 
 class CommandManager {
   constructor(client, prefix) {
     this.client = client;
-    this.prefix = new Prefix(prefix);
+    this.prefix = prefix;
     this.parser = new CommandParser(this);
 
-    this.commands = Collection();
-    this.aliases = Collection();
+    this.commands = new Collection();
+    this.aliases = new Collection();
   }
 
   static asMappingKey(cmdName) {
@@ -17,9 +16,10 @@ class CommandManager {
   }
 
   validateCommand(key, command) {
-    if (this.aliases.has(key)) throw new Error(`${command.cmd} has already been set as an alias`);
-    if (this.commands.has(key)) throw new Error(`${command.cmd} has already been set as a command`);
-    if (/ /.exec(command)) throw new Error(`The command can't contain space. Got ${command}`);
+    const cmd = command.cmd;
+    if (this.aliases.has(key)) throw new Error(`${cmd} has already been set as an alias`);
+    if (this.commands.has(key)) throw new Error(`${cmd} has already been set as a command`);
+    if (/ /.exec(cmd)) throw new Error(`The command can't contain space. Got ${cmd}`);
   }
 
   pushCommand(command) {
@@ -31,7 +31,7 @@ class CommandManager {
   }
 
   pushAlias(alias) {
-    const key = this.asMappingKey(alias);
+    const key = this.asMappingKey(alias.cmd);
     this.validateCommand(key, alias);
     this.aliases.set(key, alias);
 

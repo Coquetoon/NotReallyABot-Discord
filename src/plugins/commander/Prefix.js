@@ -1,7 +1,8 @@
 class Prefix {
-  constructor(name, { separateBySpace = false, caseSensitive = false } = {}) {
-    if (/ /.name) throw new Error(`The prefix can't contain space. Got '${name}'`);
+  constructor(client, name, { separateBySpace = false, caseSensitive = false } = {}) {
+    if (/ /.exec(name)) throw new Error(`The prefix can't contain space. Got '${name}'`);
 
+    this.client = client;
     this.name = name;
     this.separateBySpace = separateBySpace;
     this.caseSensitive = caseSensitive;
@@ -26,4 +27,4 @@ class Prefix {
   }
 }
 
-exports.default = Prefix;
+module.exports = Prefix;
