@@ -11,7 +11,7 @@ Bottie.on('ready', function onReady() {
 
   console.log(config.onReadyConsoleMessage); // eslint-disable-line no-console
   // Change game to the one set in the config file
-  me.setGame(config.game);
+  me.setGame('to the world: "I am not a bot!"', 'https://twitch.tv/twitch');
 
   config.bot.onReady.sendMessages.forEach((msg) => {
     const channel = this.channels.get(msg.channel);
