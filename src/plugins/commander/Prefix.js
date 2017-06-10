@@ -11,6 +11,9 @@ class Prefix {
   containedIn(content) {
     const prefix = this.name;
     const prefixMatch = /[^\s]+/.exec(content.slice(0, prefix.length));
+
+    if (!prefixMatch) return false;
+
     const contentPrefix = prefixMatch[0];
 
     const contained = this.compare(contentPrefix);
