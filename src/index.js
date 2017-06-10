@@ -37,7 +37,7 @@ Bottie.on('message', function onMessage(msg) {
 
       answer.executeCommand().catch(console.log);
     })
-    .catch(console.log);
+    .catch(() => {});
 });
 
 Bottie.on('guildCreate', function onGuildCreate(guild) {
