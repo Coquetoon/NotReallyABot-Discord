@@ -27,7 +27,7 @@ module.exports = {
 
           member.removeRoles(colorRoles)
             .catch(e => msg.reply(`I couldn't remove your old colours. Reason: ${e}`));
-        }, 500);
+        }, 1000);
       })
       .catch((error) => {
         msg.reply(`I couldn't give you the colour ${role}! Maybe I don't have permissions to manage that role.\n${error}`);
